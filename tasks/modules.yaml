@@ -1,0 +1,12 @@
+---
+- name: check_config
+  shell: apachectl -t
+  register: config_correct
+  ignore_errors: yes
+- name: enable_modules
+  apache2_module:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - "{{ additional_modules }}"
+  when: config_correct.rc == 0

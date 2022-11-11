@@ -5,6 +5,12 @@ package: apache2
 # service name according to your distribution
 service: apache2
 
+virtual_hosts:
+  - www.example.de
+  - mail.example.de
+
+admin_email: hostmaster@example.de
+
 # customize or complement due to your OS and needs
 additional_packages:
   - php
@@ -16,6 +22,9 @@ letsencrypt: true
 letsencrypt_domains:
   - www.example.de
   - mail.example.de
+# in some cases you might want to rollout config without claimimg certificates; set value to false in that case
+run_dehydrated: true
+
 additional_modules:
   - ssl
 # when set to 'true', config files under files/conf-available are copied

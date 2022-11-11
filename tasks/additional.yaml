@@ -1,0 +1,7 @@
+---
+- debug:
+    msg: "Executing individual tasks..."
+# enter specific tasks for your server in here
+- debug:
+    msg: "Individual tasks done."
+

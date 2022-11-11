@@ -1,0 +1,11 @@
+---
+- name: copy_config
+  copy:
+    src: "{{ item }}"
+    dest: /etc/apache2/conf-available/
+  with_fileglob: "files/conf-available/*"
+  when: additional_config == true
+- name: enable_config
+  shell: "a2enconf {{ item }}"
+  with_items: "{{ conf_enabled }}"
+  when: conf_enabled is defined

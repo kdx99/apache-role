@@ -1,0 +1,13 @@
+---
+- name: install_apache
+  package:
+    name: apache2
+    state: present
+
+- name: install_additional
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ additional_packages }}"
+  when: additional_packages is defined

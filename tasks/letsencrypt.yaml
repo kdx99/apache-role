@@ -1,0 +1,31 @@
+---
+- name: install_letsencrypt
+  package:
+    name: dehydrated
+    state: present
+
+- package:
+    name: dehydrated-apache2
+    state: present
+
+- name: domain
+  lineinfile:
+    dest: /etc/dehydrated/domains.txt
+    regex: "{{ item }}"
+    line: "{{ item }}"
+    create: yes
+  with_items:
+    - "{{ letsencrypt_domains }}"
+
+- name: check_dir
+  stat:
+    path: /var/lib/dehydrated/certs
+  register: certpath
+
+- name: register_dom
+  shell: dehydrated --register --accept-terms
+  when: not certpath.stat.exists
+
+- name: run
+  shell: dehydrated -c
+  when: run_dehydrated == true
