@@ -1,0 +1,24 @@
+---
+- include_tasks:
+    file: install.yaml
+    apply:
+      tags:
+        - install
+- name: task_modules
+  include_tasks:
+    file: modules.yaml
+- name: task_config
+  include_tasks:
+    file: config.yaml
+- name: task_vhost
+  include_tasks:
+    file: vhost.yaml
+- name: task_modules2
+  include_tasks:
+    file: modules.yaml
+  when: config_correct.rc == 1
+- name: task_individual
+  include_tasks:
+    file: additional.yaml
+- include_tasks:
+    file: restart.yaml

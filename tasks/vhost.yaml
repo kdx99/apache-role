@@ -1,0 +1,19 @@
+---
+# copy templates to sites-available
+- name: copy_vhosts
+  copy:
+    src: "{{ item }}"
+    dest: /etc/apache2/sites-available
+  when: item is not search("template.conf") and item is not search("template-ssl.conf")
+  with_fileglob: "templates/*"
+
+- name: disable_default
+  shell: a2dissite 000-default.conf
+
+- include_tasks:
+    file: letsencrypt.yaml
+  when: letsencrypt == true
+
+- name: enable
+  shell: for i in $(ls /etc/apache2/sites-available | grep -Ev \(default\|default-ssl\).conf; do a2ensite $i; done
+  notify: Restart apache
