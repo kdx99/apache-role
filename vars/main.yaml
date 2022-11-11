@@ -2,6 +2,9 @@
 # package name according to your distribution
 package: apache2
 
+# service name according to your distribution
+service: apache2
+
 # customize or complement due to your OS and needs
 additional_packages:
   - php
