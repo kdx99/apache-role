@@ -1,0 +1,26 @@
+---
+# package name according to your distribution
+package: apache2
+
+# service name according to your distribution
+service: apache2
+
+# customize or complement due to your OS and needs
+additional_packages:
+  - php
+  - php-fpm
+
+# get certificates from letsencrypt
+letsencrypt: true
+# set only when letsencrypt = true
+letsencrypt_domains:
+  - www.example.de
+  - mail.example.de
+additional_modules:
+  - ssl
+# when set to 'true', config files under files/conf-available are copied
+# but NOT enabled
+additional_config: true
+# enable config from files/conf-available:
+conf_enabled:
+  - default.conf
