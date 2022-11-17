@@ -5,10 +5,11 @@ package: apache2
 # service name according to your distribution
 service: apache2
 
-virtual_hosts:
-  - www.example.de
-  - mail.example.de
-
+# all virtual hosts you want to manage here
+virtualhost:
+  - www.nomorebluescreen.de
+  - mail.nomorebluescreen.de
+  - wiki.nomorebluescreen.de
 admin_email: hostmaster@example.de
 
 # customize or complement due to your OS and needs
@@ -19,17 +20,21 @@ additional_packages:
 # get certificates from letsencrypt
 letsencrypt: true
 # set only when letsencrypt = true
+# might be identical with virtual_host
 letsencrypt_domains:
-  - www.example.de
-  - mail.example.de
+  - www.nomorebluescreen.de
+  - mail.nomorebluescreen.de
+  - wiki.nomorebluescreen.de
 # in some cases you might want to rollout config without claimimg certificates; set value to false in that case
 run_dehydrated: true
 
 additional_modules:
+  - rewrite
   - ssl
+  - status
 # when set to 'true', config files under files/conf-available are copied
 # but NOT enabled
 additional_config: true
 # enable config from files/conf-available:
-conf_enabled:
-  - default.conf
+#conf_enabled:
+#   - ssl-encryption.conf
