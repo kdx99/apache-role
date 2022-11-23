@@ -1,4 +1,7 @@
 ---
+# activate on demand
+#- include_tasks:
+#    file: test.yaml
 - include_tasks:
     file: install.yaml
     apply:
@@ -20,5 +23,6 @@
 - name: task_individual
   include_tasks:
     file: additional.yaml
-- include_tasks:
+- name: task_restart
+  include_tasks:
     file: restart.yaml

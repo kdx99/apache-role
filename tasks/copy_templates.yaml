@@ -1,0 +1,31 @@
+---
+- name: set virtualhost
+  set_fact:
+    virtualhost: "{{ item.key }}"
+
+- name: set documentroot
+  set_fact:
+    documentroot: "{{ item.value.documentroot }}"
+
+- name: set includes
+  set_fact:
+    include: "{{ item.value.include }}"
+  when: item.value.include is defined
+
+- name: set_aliases
+  set_fact:
+    serveralias: "{{ item.value.serveralias }}"
+  when: item.value.serveralias is defined
+
+# copy templates locally
+- name: copy_templates
+  template:
+    src: templates/template.conf
+    dest: "roles/{{ ansible_role_name }}/templates/{{ item.key }}.conf"
+  delegate_to: localhost
+
+- name: copy_templates_ssl
+  template:
+    src: templates/template-ssl.conf
+    dest: "roles/{{ ansible_role_name }}/templates/{{ item.key }}-ssl.conf"
+  delegate_to: localhost
