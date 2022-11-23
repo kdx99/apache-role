@@ -1,5 +1,10 @@
 ---
-# copy templates to sites-available
+# copy templates
+- name: copy_templates
+  include_tasks: copy_templates.yaml
+  with_dict: "{{ virtual_host }}"
+
+# copy vhosts templates to sites-available
 - name: copy_vhosts
   copy:
     src: "{{ item }}"
@@ -15,5 +20,6 @@
   when: letsencrypt == true
 
 - name: enable
-  shell: for i in $(ls /etc/apache2/sites-available | grep -Ev \(default\|default-ssl\).conf; do a2ensite $i; done
-  notify: Restart apache
+  shell: a2ensite "{{ item | basename }}"
+  when: item is not search("template.conf") and item is not search("template-ssl.conf")
+  with_fileglob: "templates/*"

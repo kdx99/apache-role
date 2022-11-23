@@ -1,14 +1,14 @@
+---
 - name: syntax_check
   shell: apachectl -t
   register: syntaxcheck
 
-- name: restart
+- name: restart_service
+  debug:
+    msg: "Apache has been installed and configured on your system."
   notify: Restart apache
   when: syntaxcheck.rc == 0
 
 - debug:
     msg: "Apache config has errors - stopping here."
-  when: syntaxcheck.rc != 0
-
-- meta: end_play
   when: syntaxcheck.rc != 0

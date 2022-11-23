@@ -6,11 +6,21 @@ package: apache2
 service: apache2
 
 # all virtual hosts you want to manage here
-virtualhost:
-  - www.nomorebluescreen.de
-  - mail.nomorebluescreen.de
-  - wiki.nomorebluescreen.de
-admin_email: hostmaster@example.de
+virtual_host:
+  www.nomorebluescreen.de:
+    documentroot: /var/www
+  mail.nomorebluescreen.de:
+    documentroot: /usr/share/roundcube
+  wiki.nomorebluescreen.de:
+    documentroot: /var/lib/mediawiki
+    serveralias:
+      - wiki.nomorebluescreen.de
+
+admin_email: hostmaster@nomorebluescreen.de
+
+# Possible values include: debug, info, notice, warn, error, crit,
+# alert, emerg
+loglevel: warn
 
 # customize or complement due to your OS and needs
 additional_packages:
@@ -32,9 +42,6 @@ additional_modules:
   - rewrite
   - ssl
   - status
-# when set to 'true', config files under files/conf-available are copied
-# but NOT enabled
-additional_config: true
 # enable config from files/conf-available:
-#conf_enabled:
-#   - ssl-encryption.conf
+conf_enabled:
+  - zz-www.conf

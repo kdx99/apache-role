@@ -1,0 +1,17 @@
+---
+- debug:
+    msg: "{{ ansible_role_name }}"
+- name: templates
+  debug:
+    msg: "a2ensite {{ item | basename }}"
+  when: item is not search("template.conf") and item is not search("template-ssl.conf")
+  with_fileglob: "templates/*"
+
+- name: debug virtual hosts
+  debug:
+    msg: "Virtual host is {{ item.key }} and has {{ item.value.documentroot }} as DocRoot"
+  with_dict: "{{ virtual_host }}"
+
+- name: exit playbook
+  debug:
+    msg: "{{ exit }}"
