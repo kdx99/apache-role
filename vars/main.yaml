@@ -7,16 +7,16 @@ service: apache2
 
 # all virtual hosts you want to manage here
 virtual_host:
-  www.nomorebluescreen.de:
+  www.example.de:
     documentroot: /var/www
-  mail.nomorebluescreen.de:
+  mail.example.de:
     documentroot: /usr/share/roundcube
-  wiki.nomorebluescreen.de:
+  wiki.example.de:
     documentroot: /var/lib/mediawiki
     serveralias:
-      - wiki.nomorebluescreen.de
+      - docu.example.de
 
-admin_email: hostmaster@nomorebluescreen.de
+admin_email: hostmaster@example.de
 
 # Possible values include: debug, info, notice, warn, error, crit,
 # alert, emerg
@@ -32,9 +32,9 @@ letsencrypt: true
 # set only when letsencrypt = true
 # might be identical with virtual_host
 letsencrypt_domains:
-  - www.nomorebluescreen.de
-  - mail.nomorebluescreen.de
-  - wiki.nomorebluescreen.de
+  - www.example.de
+  - mail.example.de
+  - wiki.example.de
 # in some cases you might want to rollout config without claimimg certificates; set value to false in that case
 run_dehydrated: true
 
