@@ -8,7 +8,7 @@
 - name: copy_vhosts
   copy:
     src: "{{ item }}"
-    dest: /etc/apache2/sites-available
+    dest: "/etc/{{ service }}/sites-available"
   when: item is not search("template.conf") and item is not search("template-ssl.conf")
   with_fileglob: "templates/*"
 

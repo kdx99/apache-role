@@ -1,7 +1,7 @@
 ---
 - name: install_apache
   package:
-    name: apache2
+    name: "{{ package }}"
     state: present
 
 - name: install_additional
