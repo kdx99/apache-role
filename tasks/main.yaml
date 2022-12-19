@@ -16,6 +16,8 @@
 - name: task_vhost
   include_tasks:
     file: vhost.yaml
+# if module enabling has not been done yet due to (temporary) config errors
+# give it a second try here
 - name: task_modules2
   include_tasks:
     file: modules.yaml
