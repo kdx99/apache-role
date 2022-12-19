@@ -33,7 +33,7 @@ letsencrypt: true
 # might be identical with virtual_host
 letsencrypt_domains:
   - www.nomorebluescreen.de
-  - mail.nomorebluescreen.de
+  - mail.nomorebluescreen.de mx.nomorebluescreen.de
   - wiki.nomorebluescreen.de
 # in some cases you might want to rollout config without claimimg certificates; set value to false in that case
 run_dehydrated: true
