@@ -8,6 +8,26 @@
     documentroot: "{{ item.value.documentroot }}"
   when: item.value.documentroot is defined
 
+- name: set ssl_certificate_file
+  set_fact:
+    ssl_certificate_file: "{{ item.value.ssl_certificate_file }}"
+  when: item.value.ssl_certificate_file is defined
+
+- name: set default ssl_certificate_file
+  set_fact:
+    ssl_certificate_file: "/var/lib/dehydrated/certs/{{ virtualhost }}/fullchain.pem"
+  when: item.value.ssl_certificate_file is undefined
+
+- name: set ssl_certificate_key_file
+  set_fact:
+    ssl_certificate_key_file: "{{ item.value.ssl_certificate_key_file }}"
+  when: item.value.ssl_certificate_key_file is defined
+
+- name: set default ssl_certificate_key_file
+  set_fact:
+    ssl_certificate_key_file: "/var/lib/dehydrated/certs/{{ virtualhost }}/privkey.pem"
+  when: item.value.ssl_certificate_key_file is undefined
+
 - name: set includes
   set_fact:
     include: "{{ item.value.include }}"
