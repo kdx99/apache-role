@@ -1,8 +1,4 @@
 ---
-- name: check_config
-  shell: apachectl -t
-  register: config_correct
-  ignore_errors: yes
 - name: enable_modules
   apache2_module:
     state: present
