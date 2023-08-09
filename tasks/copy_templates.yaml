@@ -6,6 +6,7 @@
 - name: set documentroot
   set_fact:
     documentroot: "{{ item.value.documentroot }}"
+  when: item.value.documentroot is defined
 
 - name: set includes
   set_fact:
