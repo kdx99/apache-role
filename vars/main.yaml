@@ -46,6 +46,7 @@ additional_modules:
 conf_enabled:
   - zz-www.conf
 # mod_evasive
+# https://github.com/jzdziarski/mod_evasive
 mod_evasive: false
 # (disabled by default)
 doshashtablesize: 32768
