@@ -26,6 +26,10 @@
   include_tasks:
     file: modules.yaml
   when: config_correct.rc == 1
+- name: task_modevasive
+  include_tasks:
+    file: modevasive.yaml
+  when: mod_evasive == true
 - name: task_individual
   include_tasks:
     file: additional.yaml

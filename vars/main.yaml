@@ -45,3 +45,17 @@ additional_modules:
 # enable config from files/conf-available:
 conf_enabled:
   - zz-www.conf
+# mod_evasive
+mod_evasive: false
+# (disabled by default)
+doshashtablesize: 32768
+dospagecount: 5
+dossitecount: 50
+dospageinterval: 1
+dossiteinterval: 2
+dosblockingperiod: 300
+dosemailnotify: hostmaster@example.de
+doslogdir: "/var/log/apache2/mod_evasive"
+doswhitelist:
+  - 127.0.0.1
+  - 192.168.0.*

@@ -1,0 +1,24 @@
+- name: modevasive
+  package:
+    name: libapache2-mod-evasive
+    state: present
+
+- name: enable_modevasive
+  apache2_module:
+    state: present
+    name: evasive20
+
+- name: logdir_modevasive
+  file:
+    state: directory
+    path: "{{ doslogdir }}"
+    owner: www-data
+    group: www-data
+
+- name: configure_modevasive
+  template:
+    src: templates/modevasive.conf
+    dest: /etc/apache2/conf-available/modevasive.conf
+
+- name: activate_modevasive
+  shell: a2enconf modevasive.conf
