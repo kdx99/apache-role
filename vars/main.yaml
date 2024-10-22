@@ -50,7 +50,7 @@ conf_enabled:
 mod_evasive: false
 # (disabled by default)
 doshashtablesize: 32768
-dospagecount: 5
+dospagecount: 20
 dossitecount: 50
 dospageinterval: 1
 dossiteinterval: 2
